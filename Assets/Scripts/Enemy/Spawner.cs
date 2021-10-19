@@ -8,14 +8,12 @@ public class Spawner : MonoBehaviour
     public GameObject enemyObj;
     public int enemyCount;
     public int delay;
-    private EntityManager _manager;
-    private Entity enemyEntity;
-    
-    void Start()
+    private Entity _enemyEntity;
+    private GameManager _gManager;
+    void Awake()
     {
-        _manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld,  null);
-        enemyEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(enemyObj, settings);
+        _gManager = GameManager.gameManager;
+        _enemyEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(enemyObj, _gManager.settings);
         StartCoroutine(StartWave(delay));
     }
 
@@ -24,12 +22,11 @@ public class Spawner : MonoBehaviour
         
         for (int i = 0; i < enemyCount; i++)
         {
-            Entity enemyInstance = _manager.Instantiate(enemyEntity);
+            Entity enemyInstance = _gManager._manager.Instantiate(_enemyEntity);
             Vector3 startPosition = new Vector3(Random.Range(-8, 8), transform.position.y, 0);
-            _manager.SetComponentData(enemyInstance, new Translation(){Value = startPosition});
-            _manager.SetComponentData(enemyInstance, new Rotation(){Value = transform.rotation});
+            _gManager._manager.SetComponentData(enemyInstance, new Translation(){Value = startPosition});
             yield return new WaitForSeconds(timeBetweenSpawn);
-            _manager.DestroyEntity(enemyInstance);
+            _gManager._manager.DestroyEntity(enemyInstance);
             
         }
 

@@ -4,13 +4,16 @@ using UnityEngine.Jobs;
 
 public class GameManager : MonoBehaviour
 {
-    private EntityManager _manager;
-
+    public static GameManager gameManager;
+    
+    public EntityManager _manager;
+    public GameObject bulletPrefab;
+    public GameObjectConversionSettings settings;
     void Awake()
     {
+        gameManager = this;
         _manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-
-        //GameObjectConversionSettings settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, null);
+        settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld,  null);
         
     }
 

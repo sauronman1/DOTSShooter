@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977e3b285673d8345a03d1af190da8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 4407067448022354568, guid: 15b8a14b51458a24c86a3cca4dc3cd8f, type: 3}
 --- !u!4 &806599371
 Transform:
   m_ObjectHideFlags: 0
@@ -426,6 +427,7 @@ MonoBehaviour:
   direction: 1
   speed: 4
   xBound: 8
+  hasShot: 0
 --- !u!114 &1885631374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,3 +544,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightKey: 100
   leftKey: 97
+  ShootKey: 323

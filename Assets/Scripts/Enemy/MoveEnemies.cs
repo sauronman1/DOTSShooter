@@ -4,21 +4,21 @@ using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-public class MoveEnemies : JobComponentSystem
+public class MoveEnemies : SystemBase
 {
-    protected override JobHandle OnUpdate(JobHandle inputDeps)
+    protected override void OnUpdate()
     {
         float deltaTime = Time.DeltaTime;
 
-        return Entities.WithAll<EnemyTag>().ForEach(
+        Entities.WithAll<EnemyTag>().ForEach(
             (Entity entity, ref Translation transform) =>
             {
                 transform.Value.y -= 1 * deltaTime;
                 if (transform.Value.y < 0)
                 {
                     
-                }
-            }).Schedule(inputDeps);
+                } 
+            }).Schedule();
         
     }
 }
