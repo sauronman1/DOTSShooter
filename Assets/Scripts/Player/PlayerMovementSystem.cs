@@ -10,7 +10,6 @@ public class PlayerMovementSystem : SystemBase
     protected override void OnUpdate()
     {
         float deltaTime = Time.DeltaTime;
-        GameManager gManager = GameManager.gameManager;
         var settings = GetSingleton<Settings>();
 
 
