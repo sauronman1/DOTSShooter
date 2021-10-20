@@ -11,7 +11,8 @@ public class PlayerMovementSystem : SystemBase
     {
         float deltaTime = Time.DeltaTime;
         GameManager gManager = GameManager.gameManager;
-        
+        var settings = GetSingleton<Settings>();
+
 
         Entities.WithAll<PlayerTag>().WithoutBurst().WithStructuralChanges().ForEach((ref Translation trans, ref EntityMovementData data) =>
         {
@@ -19,12 +20,11 @@ public class PlayerMovementSystem : SystemBase
                 data.xBound);
             if (data.hasShot)
             {
-                Entity enemyEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(gManager.bulletPrefab, gManager.settings);
-                Entity enemyInstance = gManager._manager.Instantiate(enemyEntity);
+                Entity bullet = EntityManager.Instantiate(settings.bullet);
 
                 float3 pos = trans.Value;
                 pos.y += pos.y + 3;
-                gManager._manager.SetComponentData(enemyInstance, new Translation(){Value = pos});
+                EntityManager.SetComponentData(bullet, new Translation(){Value = pos});
             }
         }).Run();
 

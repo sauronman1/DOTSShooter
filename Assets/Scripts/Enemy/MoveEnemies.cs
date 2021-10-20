@@ -11,12 +11,12 @@ public class MoveEnemies : SystemBase
         float deltaTime = Time.DeltaTime;
 
         Entities.WithAll<EnemyTag>().ForEach(
-            (Entity entity, ref Translation transform) =>
+            (Entity entity, ref Translation trans) =>
             {
-                transform.Value.y -= 1 * deltaTime;
-                if (transform.Value.y < 0)
+                trans.Value.y -= 1 * deltaTime;
+                if (trans.Value.y < 0)
                 {
-                    
+                  
                 } 
             }).Schedule();
         
