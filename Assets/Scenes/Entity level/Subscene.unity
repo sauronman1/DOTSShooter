@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 5062615234932978209, guid: 59b00839473e29040ba93c4fdd8f7365, type: 3}
   bullet: {fileID: 4407067448022354568, guid: 15b8a14b51458a24c86a3cca4dc3cd8f, type: 3}
-  count: 5
+  count: 100
 --- !u!4 &806599371
 Transform:
   m_ObjectHideFlags: 0
