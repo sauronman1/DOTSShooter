@@ -7,6 +7,7 @@ using UnityEditor;
 [AlwaysSynchronizeSystem]
 public class PlayerMovementSystem : SystemBase
 {
+    
     protected override void OnUpdate()
     {
         float deltaTime = Time.DeltaTime;
@@ -27,10 +28,8 @@ public class PlayerMovementSystem : SystemBase
             }
         }).Run();
 
-        Entities.WithAll<BulletTag>().WithoutBurst().ForEach((ref Translation trans, in EntityMovementData data) =>
-        {
-            trans.Value.y = trans.Value.y + (data.speed * data.direction * deltaTime);
-            
-        }).Schedule();
+
+        
+      
     }
 }

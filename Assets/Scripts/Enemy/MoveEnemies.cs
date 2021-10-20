@@ -26,6 +26,18 @@ public class MoveEnemies : SystemBase
                   ecb.DestroyEntity(entityInQueryIndex, entity);
                 } 
             }).Schedule();
+        
+        Entities.WithAll<BulletTag>().WithoutBurst().ForEach((Entity entity, int entityInQueryIndex, ref Translation trans, in EntityMovementData data) =>
+        {
+            trans.Value.y = trans.Value.y + (data.speed * data.direction * deltaTime);
+            if (trans.Value.y > 6)
+            {
+                ecb.DestroyEntity(entityInQueryIndex, entity);
+            } 
+        }).Schedule();
+        
         endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
     }
+    
+    
 }
